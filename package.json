@@ -1,0 +1,18 @@
+{
+  "name": "greeter",
+  "version": "1.0.0",
+  "description": "My Custom Greeter for LightDM",
+  "main": "gulpfile.js",
+  "author": "Jack Deadman",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+      "dev": "node_modules/gulp/bin/gulp.js dev",
+      "build": "node_modules/gulp/bin/gulp.js build"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
