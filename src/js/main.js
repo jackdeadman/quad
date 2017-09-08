@@ -71,12 +71,8 @@ password.addEventListener('keydown', (e) => {
 
 
     if (e.keyCode === 13) {
-        if (password.value === 'password') {
-            processlogin();
-        } else {
-            login.classList.add('invalid');
-            password.value = '';
-        }
+        console.log(password.value);
+        lightdm.respond(password.value);
     }
 
 });
@@ -84,3 +80,28 @@ password.addEventListener('keydown', (e) => {
 login.addEventListener('animationend', () => {
     login.classList.remove('invalid');
 });
+
+function main2() {
+    console.log(lightdm.users);
+    const currentUser = lightdm.users[0];
+    console.log(currentUser.username);
+    lightdm.authenticate(currentUser.username);
+
+    document.querySelector('.profile__name')
+        .innerHTML = currentUser.display_name;
+
+}
+
+window.authentication_complete = function() {
+    console.log('callback');
+	console.log(lightdm.is_authenticated);
+
+    if (lightdm.is_authenticated) {
+        lightdm.start_session_sync();
+    }
+};
+
+
+setTimeout(() => {
+    main2();
+}, 100);
