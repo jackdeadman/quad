@@ -3,11 +3,43 @@
     <head>
         <meta charset="utf-8">
         <title>Greeter</title>
+        <link rel="stylesheet" href="css/font-awesome.css">
         <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <div id="app"></div>
-        <script type="text/javascript" src="js/mock.js"></script>
+
+        <div id="main-container">
+            <div class="login-box center-box center-box--medium" id="login">
+
+                <div class="profile">
+                    <div class="profile__image"></div>
+                    <div class="profile__name">Jack Deadman</div>
+                </div>
+
+                <ul class="login-box__inputs field-list">
+                    <!-- <li class="field-list__item">
+                        <input type="text" placeholder="Username">
+                    </li> -->
+                    <li class="field-list__item">
+                        <input type="password" placeholder="Password" id="password">
+                    </li>
+
+                    <li class="field-list__item">
+                        <button class="button button--primary button--full">Login</button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="system-controls">
+                <i class="fa fa-power-off system-controls__control"></i>
+                <i class="fa fa-refresh system-controls__control"></i>
+                <i class="fa fa-lock system-controls__control"></i>
+            </div>
+
+            <div id="os-logo">
+                <img src="images/arch.svg" alt="os-logo">
+            </div>
+        </div>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

@@ -25,6 +25,7 @@ gulp.task('sass', () => {
 gulp.task('html', () => copy(htmlMatch, outBase));
 gulp.task('js', () => copy(jsMatch, path.join(outBase, 'js')));
 gulp.task('setup', () => copy('src/index.theme', outBase));
+gulp.task('static', () => copy('src/static/**/*', outBase));
 
 gulp.task('serve', () => {
     gulp.src(outBase)
@@ -37,9 +38,10 @@ gulp.task('dev', () => {
     gulp.watch(sassMatch, ['sass']);
     gulp.watch(htmlMatch, ['html']);
     gulp.watch(jsMatch, ['js']);
+    gulp.watch('src/static', ['static']);
     gulp.start('serve');
 });
 
 
 
-gulp.task('build', ['setup', 'sass', 'html', 'js']);
+gulp.task('build', ['setup', 'sass', 'html', 'js', 'static']);

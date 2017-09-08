@@ -1,0 +1,18 @@
+.floating-box
+    height: 100px
+    width: 100px
+    position: fixed
+    background-color: $primary-color
+    animation: float 10s infinite
+    transform: scale(0)
+    z-index: -1
+
+@keyframes float
+    0%
+        transform: scale(0)
+    48%
+        transform: scale(1)
+    52%
+        transform: scale(1)
+    100%
+        transform: scale(0)
