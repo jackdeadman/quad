@@ -1,5 +1,3 @@
-// lightdm is not defined immediately real one is being used
-
 class User {
     constructor(user=null) {
         if (user === null) {
@@ -49,6 +47,14 @@ class Login {
         this.components.profileName.innerHTML = user.display_name;
     }
 
+    incorrectPassword() {
+        password.value = '';
+        this._authenticate();
+        this._stopLoading();
+        show(this.components.passwordIncorrect)
+        this._emthesiseLogin();
+    }
+
     _authenticate() {
         lightdm.authenticate(this.currentUser.username);
     }
@@ -84,20 +90,12 @@ class Login {
         });
     }
 
-    _incorrectPassword() {
-        password.value = '';
-        this._authenticate();
-        this._stopLoading();
-        show(this.components.passwordIncorrect)
-        this._emthesiseLogin();
-    }
-
     _processLogin() {
         this._startLoading();
 
         if (lightdm.inBrowser) {
             setTimeout(() => {
-                this._incorrectPassword();
+                this.incorrectPassword();
             }, 1000);
         }
 
@@ -105,7 +103,17 @@ class Login {
     }
 }
 
+// lightdn is undefined otherwise
+let login;
 setTimeout(() => {
-    const login = new Login();
+    login = new Login();
     login.loadUser(new User());
-},1)
+}, 1)
+
+function authentication_complete() {
+    if (lightdm.is_authenticated) {
+        lightdm.start_session_sync();
+	} else {
+        login.incorrectPassword();
+	}
+}

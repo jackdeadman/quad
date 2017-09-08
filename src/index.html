@@ -23,7 +23,7 @@
                             <input type="text" placeholder="Username">
                         </li> -->
                         <li class="field-list__item">
-                            <input type="password" placeholder="Password" id="password" autofocus>
+                            <input type="password" placeholder="Password" id="password" autofocus tabindex="1">
                         </li>
 
                         <li class="field-list__item login-box__incorrect-password hidden" id="password-incorrect">
@@ -31,7 +31,7 @@
                         </li>
 
                         <li class="field-list__item">
-                            <button class="button button--primary button--full">Login</button>
+                            <button class="button button--primary button--full" tabindex="2">Login</button>
                         </li>
                     </ul>
                 </div>
@@ -43,9 +43,9 @@
             </form>
 
             <div class="system-controls">
-                <i class="fa fa-power-off system-controls__control"></i>
-                <i class="fa fa-refresh system-controls__control"></i>
-                <i class="fa fa-lock system-controls__control"></i>
+                <i class="fa fa-power-off system-controls__control" id="power" tabindex="3"></i>
+                <i class="fa fa-refresh system-controls__control" id="refresh" tabindex="3"></i>
+                <i class="fa fa-lock system-controls__control" id="lock" tabindex="5"></i>
             </div>
 
             <div id="os-logo">
