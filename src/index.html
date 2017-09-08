@@ -9,28 +9,38 @@
     <body>
 
         <div id="main-container">
-            <div class="login-box center-box center-box--medium" id="login">
-
-                <div class="profile">
-                    <div class="profile__image">
-                        <img src="images/default-avatar.png" alt="Profile image">
+            <form class="login-box center-box center-box--medium" id="login">
+                <div id="login-details">
+                    <div class="profile">
+                        <div class="profile__image">
+                            <img src="images/default-avatar.png" alt="Profile image">
+                        </div>
+                        <div class="profile__name"></div>
                     </div>
-                    <div class="profile__name"></div>
+
+                    <ul class="login-box__inputs field-list">
+                        <!-- <li class="field-list__item">
+                            <input type="text" placeholder="Username">
+                        </li> -->
+                        <li class="field-list__item">
+                            <input type="password" placeholder="Password" id="password" autofocus>
+                        </li>
+
+                        <li class="field-list__item login-box__incorrect-password hidden" id="password-incorrect">
+                            The password is incorrect. Try again.
+                        </li>
+
+                        <li class="field-list__item">
+                            <button class="button button--primary button--full">Login</button>
+                        </li>
+                    </ul>
                 </div>
 
-                <ul class="login-box__inputs field-list">
-                    <!-- <li class="field-list__item">
-                        <input type="text" placeholder="Username">
-                    </li> -->
-                    <li class="field-list__item">
-                        <input type="password" placeholder="Password" id="password">
-                    </li>
-
-                    <li class="field-list__item">
-                        <button class="button button--primary button--full">Login</button>
-                    </li>
-                </ul>
-            </div>
+                <div class="hidden login-box__loader hidden" id="login-loader">
+                    <img src="images/loader.svg" alt="loading" class="login-box__loader">
+                    <div>Logging in</div>
+                </div>
+            </form>
 
             <div class="system-controls">
                 <i class="fa fa-power-off system-controls__control"></i>
@@ -42,7 +52,8 @@
                 <img src="images/arch.svg" alt="os-logo">
             </div>
         </div>
-        <!-- <script type="text/javascript" src="js/mock.js"></script> -->
+        <script type="text/javascript" src="js/mock.js"></script>
+        <script type="text/javascript" src="js/background.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

@@ -361,6 +361,10 @@ class LightDMGreeter {
 		this._initialize();
 	}
 
+	get inBrowser() {
+		return true;
+	}
+
 	/**
 	 * @private
 	 */
@@ -997,4 +1001,3 @@ new LightDMGreeter();
  return user;
  }
  */
-

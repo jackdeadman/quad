@@ -1,107 +1,111 @@
-const page = {
-    height: document.body.offsetHeight,
-    width: document.body.offsetWidth
-};
+// lightdm is not defined immediately real one is being used
 
-const main = document.getElementById('main-container');
+class User {
+    constructor(user=null) {
+        if (user === null) {
+            user = lightdm.users[0];
+        }
 
-function createBox() {
-    const left = (Math.random() * page.width) - 200;
-    const bottom = Math.random() * page.height;
-    const div = document.createElement('div');
-    div.className = 'floating-box';
-    div.style.left = `${left}px`;
-    div.style.bottom = `${bottom}px`;
-
-    const presense = Math.random();
-
-    div.style.opacity = presense * 0.5
-    const size = presense * 250;
-
-    div.style.width = `${size}px`;
-    div.style.height = `${size}px`;
-    main.appendChild(div);
-    return div;
-
-}
-
-burst();
-setInterval(() => {
-    burst();
-}, 14000);
-
-setInterval(() => {
-    foo();
-}, 1000);
-
-function foo() {
-    const div = createBox();
-    setTimeout(() => {
-        div.parentNode.removeChild(div);
-    },10000);
-}
-
-function burst() {
-    for (var i = 0; i < 10; i++) {
-        foo()
+        this.user = user;
     }
 
-    setTimeout(() => {
-        for (var i = 0; i < 10; i++) {
-            foo()
+    get display_name() {
+        return this.user.display_name;
+    }
+
+    get username() {
+        return this.user.username;
+    }
+}
+
+function hide(node) {
+    node.classList.add('hidden');
+}
+
+function show(node) {
+    node.classList.remove('hidden');
+}
+
+class Login {
+
+    constructor(context) {
+        this.context = document.querySelector(context);
+        this.components = {
+            login: document.getElementById('login'),
+            password: document.getElementById('password'),
+            loginDetails: document.getElementById('login-details'),
+            loginLoader: document.getElementById('login-loader'),
+            passwordIncorrect: document.getElementById('password-incorrect'),
+            profileName: document.querySelector('.profile__name')
+        };
+
+        this._bindHandlers();
+        this.currentUser = new User();
+    }
+
+    loadUser(user) {
+        this.currentUser = user;
+        this._authenticate();
+        this.components.profileName.innerHTML = user.display_name;
+    }
+
+    _authenticate() {
+        lightdm.authenticate(this.currentUser.username);
+    }
+
+    _bindHandlers() {
+        this.components.login.addEventListener('submit', e => {
+            e.preventDefault();
+            this._processLogin();
+        });
+    }
+
+    _startLoading() {
+        hide(this.components.loginDetails);
+        show(this.components.loginLoader);
+        this.components.password.blur();
+        this.components.password.disabled = true;
+    }
+
+    _stopLoading() {
+        show(this.components.loginDetails);
+        hide(this.components.loginLoader);
+        this.components.password.disabled = false;
+        // Common hack
+        setTimeout(() => password.focus(), 1);
+    }
+
+    _emthesiseLogin() {
+        const login = this.components.login;
+        login.classList.add('invalid');
+        login.addEventListener('animationend', function handler() {
+            login.removeEventListener('animationend', handler);
+            login.classList.remove('invalid');
+        });
+    }
+
+    _incorrectPassword() {
+        password.value = '';
+        this._authenticate();
+        this._stopLoading();
+        show(this.components.passwordIncorrect)
+        this._emthesiseLogin();
+    }
+
+    _processLogin() {
+        this._startLoading();
+
+        if (lightdm.inBrowser) {
+            setTimeout(() => {
+                this._incorrectPassword();
+            }, 1000);
         }
-        setTimeout(() => {
-            for (var i = 0; i < 10; i++) {
-                foo()
-            }
-        }, 1000);
-    }, 1000);
-}
 
-const login = document.getElementById('login');
-const password = document.getElementById('password');
-
-
-function processlogin() {
-    main.classList.add('hidden');
-}
-
-
-password.addEventListener('keydown', (e) => {
-
-
-    if (e.keyCode === 13) {
-        console.log(password.value);
         lightdm.respond(password.value);
     }
-
-});
-
-login.addEventListener('animationend', () => {
-    login.classList.remove('invalid');
-});
-
-function main2() {
-    console.log(lightdm.users);
-    const currentUser = lightdm.users[0];
-    console.log(currentUser.username);
-    lightdm.authenticate(currentUser.username);
-
-    document.querySelector('.profile__name')
-        .innerHTML = currentUser.display_name;
-
 }
 
-window.authentication_complete = function() {
-    console.log('callback');
-	console.log(lightdm.is_authenticated);
-
-    if (lightdm.is_authenticated) {
-        lightdm.start_session_sync();
-    }
-};
-
-
 setTimeout(() => {
-    main2();
-}, 100);
+    const login = new Login();
+    login.loadUser(new User());
+},1)
