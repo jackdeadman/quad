@@ -14,6 +14,10 @@ class UserWrapper {
     get username() {
         return this.user.username;
     }
+
+    get image() {
+        return this.user.image || "images/default-avatar.png";
+    }
 }
 
 function hide(node) {
@@ -34,8 +38,11 @@ class Login {
             loginDetails: document.getElementById('login-details'),
             loginLoader: document.getElementById('login-loader'),
             passwordIncorrect: document.getElementById('password-incorrect'),
-            profileName: document.querySelector('.profile__name')
+            profileName: document.querySelector('.profile__name'),
+            profileImage: document.getElementById('profile-img')
         };
+
+        this.components.profileImage.onload = function() { show(this); };
 
         this._bindHandlers();
         this.currentUser = null;
@@ -45,6 +52,7 @@ class Login {
         this.currentUser = user;
         this._authenticate();
         this.components.profileName.innerHTML = user.display_name;
+        this.components.profileImage.src = user.image;
     }
 
     incorrectPassword() {
