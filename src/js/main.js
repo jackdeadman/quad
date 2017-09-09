@@ -1,3 +1,5 @@
+const defaultAvatar = 'images/default-avatar.png'
+
 class UserWrapper {
     constructor(user=null) {
         if (user === null) {
@@ -16,7 +18,7 @@ class UserWrapper {
     }
 
     get image() {
-        return this.user.image || "images/default-avatar.png";
+        return this.user.image || defaultAvatar;
     }
 }
 
@@ -43,6 +45,12 @@ class Login {
         };
 
         this.components.profileImage.onload = function() { show(this); };
+        this.components.profileImage.onerror = function() {
+            // Check to stop infinite loop
+            if (this.src !== defaultAvatar) {
+                this.src = defaultAvatar
+            }
+        };
 
         this._bindHandlers();
         this.currentUser = null;

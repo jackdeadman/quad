@@ -13,15 +13,12 @@
                 <div id="login-details">
                     <div class="profile">
                         <div class="profile__image">
-                            <img id="profile-img" alt="Profile image" class="hidden">
+                            <img id="profile-img" draggable="false" alt="Profile image" class="hidden">
                         </div>
                         <div class="profile__name"></div>
                     </div>
 
                     <ul class="login-box__inputs field-list">
-                        <!-- <li class="field-list__item">
-                            <input type="text" placeholder="Username">
-                        </li> -->
                         <li class="field-list__item">
                             <input type="password" placeholder="Password" id="password" autofocus tabindex="1">
                         </li>
@@ -37,7 +34,7 @@
                 </div>
 
                 <div class="hidden login-box__loader hidden" id="login-loader">
-                    <img src="images/loader.svg" alt="loading" class="login-box__loader">
+                    <img src="images/loader.svg" alt="loading" class="login-box__loader" draggable="false">
                     <div>Logging in</div>
                 </div>
             </form>
@@ -48,7 +45,7 @@
             </div>
 
             <div id="os-logo">
-                <img src="images/arch.svg" alt="os-logo">
+                <img src="images/arch.svg" alt="os-logo" draggable="false">
             </div>
         </div>
         <script type="text/javascript" src="js/mock.js"></script>
