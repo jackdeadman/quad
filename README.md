@@ -1,7 +1,7 @@
 # quad
-A simple clean theme for web-greeter with a procedurally generated background. Try out the live version to see for yourself!
+A simple clean theme for web-greeter with a procedurally generated background, designed for elite hackers. Try out the [live version](https://jackdeadman.github.io/quad/) to see for yourself!
 
-![Alt text](screenshot.png?raw=true "Optional Title")
+![Alt text](screenshot.png?raw=true "Screenshot of the greeter")
 ## Installation
 Download the latest release, extract and run `$ sudo ./install.sh`. You will then need to set `webkit_theme=quad` in `/etc/lightdm/lightdm/lightdm-webkit2-greeter.conf`
 
