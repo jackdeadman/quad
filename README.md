@@ -22,4 +22,4 @@ in a browser run `npm run dev` this will start a webserver, the resulting page c
 command also starts a `livereload` server, if the livereload extension is enabled the webpage will automatically update on changes made to the source files.
 
 To test the theme natively run `sudo ./install.sh --dev` this will install the theme and then open a window showing the theme.
-See <https://github.com/jackdeadman/web-greeter> for more details on how to setup web-greeter for debugging.
+See <https://github.com/Antergos/web-greeter> for more details on how to setup web-greeter for debugging.
