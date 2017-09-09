@@ -1,4 +1,4 @@
-class User {
+class UserWrapper {
     constructor(user=null) {
         if (user === null) {
             user = lightdm.users[0];
@@ -38,7 +38,7 @@ class Login {
         };
 
         this._bindHandlers();
-        this.currentUser = new User();
+        this.currentUser = null;
     }
 
     loadUser(user) {
@@ -107,7 +107,7 @@ class Login {
 let login;
 setTimeout(() => {
     login = new Login();
-    login.loadUser(new User());
+    login.loadUser(new UserWrapper());
 }, 1)
 
 function authentication_complete() {

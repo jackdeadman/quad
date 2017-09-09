@@ -1,7 +1,7 @@
 setTimeout(() => {
-    const power = document.getElementById('#power');
-    const refresh = document.getElementById('#refresh');
-    const lock = document.getElementById('#lock');
+    const power = document.getElementById('power');
+    const refresh = document.getElementById('refresh');
 
-    power.addEventListener();
-}, 1));
+    power.addEventListener('click', lightdm.shutdown);
+    refresh.addEventListener('click', lightdm.restart);
+}, 1);
