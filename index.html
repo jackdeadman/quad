@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Greeter</title>
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+
+        <div id="main-container">
+            <form class="login-box center-box center-box--medium" id="login">
+                <div id="login-details">
+                    <div class="profile">
+                        <div class="profile__image">
+                            <img id="profile-img" draggable="false" alt="Profile image" class="hidden">
+                        </div>
+                        <div class="profile__name"></div>
+                    </div>
+
+                    <ul class="login-box__inputs field-list">
+                        <li class="field-list__item">
+                            <input type="password" placeholder="Password" id="password" autofocus tabindex="1">
+                        </li>
+
+                        <li class="field-list__item login-box__incorrect-password hidden" id="password-incorrect">
+                            The password is incorrect. Try again.
+                        </li>
+
+                        <li class="field-list__item">
+                            <button class="button button--primary button--full" tabindex="2">Login</button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="hidden login-box__loader hidden" id="login-loader">
+                    <img src="images/loader.svg" alt="loading" class="login-box__loader" draggable="false">
+                    <div>Logging in</div>
+                </div>
+            </form>
+
+            <div class="system-controls">
+                <i class="fa fa-power-off system-controls__control" id="power" tabindex="3"></i>
+                <i class="fa fa-refresh system-controls__control" id="refresh" tabindex="4"></i>
+            </div>
+
+            <div id="os-logo">
+                <img src="images/arch.svg" alt="os-logo" draggable="false">
+            </div>
+        </div>
+        <script type="text/javascript" src="js/mock.js"></script>
+        <script type="text/javascript" src="js/background.js"></script>
+        <script type="text/javascript" src="js/system-controls.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
