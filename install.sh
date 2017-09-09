@@ -6,7 +6,6 @@ echo 'Removing existing theme...'
 rm -rf "$theme_loc"
 echo 'Building...'
 npm run build
-chown -R $(whoami) dist
 cp -r dist "$theme_loc"
 
 if [ "$1" == "--dev" ]
