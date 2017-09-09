@@ -1,5 +1,5 @@
 [theme]
-name=Simple
-description=Simple Theme
+name=Quad
+description=Simple Theme for Elite hackers
 engine=lightdm-webkit-greeter
 url=index.html
