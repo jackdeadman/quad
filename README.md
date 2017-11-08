@@ -5,7 +5,7 @@ A simple clean theme for web-greeter with a procedurally generated background, d
 ## Installation
 This is a theme for [web greeter](https://github.com/Antergos/web-greeter) therefore that must be installed first (obviously).
 
-Download the [latest release](https://github.com/jackdeadman/quad/releases), extract and run `$ sudo ./install.sh`. You will then need to set `webkit_theme=quad` in `/etc/lightdm/lightdm/lightdm-webkit2-greeter.conf`
+Download the [latest release](https://github.com/jackdeadman/quad/releases), extract and run `$ sudo ./install.sh`. You will then need to set `webkit_theme=quad` in `/etc/lightdm/lightdm-webkit2-greeter.conf`
 
 ## Installation from source
 Requires `node` and `npm` to be installed.
@@ -14,7 +14,7 @@ First clone the repo `git clone git@github.com:jackdeadman/quad.git`
 
 Then run `sudo ./install.sh`
 
-Then update the theme in `/etc/lightdm/lightdm/lightdm-webkit2-greeter.conf`
+Then update the theme in `/etc/lightdm/lightdm-webkit2-greeter.conf`
 
 ## Developing
 To make the developing experience more enjoyable the theme can be deployed in a browser as well as natively. To run the theme
