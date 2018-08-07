@@ -41,7 +41,8 @@ class Login {
             loginLoader: document.getElementById('login-loader'),
             passwordIncorrect: document.getElementById('password-incorrect'),
             profileName: document.querySelector('.profile__name'),
-            profileImage: document.getElementById('profile-img')
+            profileImage: document.getElementById('profile-img'),
+            newUsers: document.querySelector('.new-users')
         };
 
         this.components.profileImage.onload = function() { show(this); };
@@ -54,6 +55,20 @@ class Login {
 
         this._bindHandlers();
         this.currentUser = null;
+    }
+
+    changeUser() {
+      const newUsers = this.components.newUsers;
+      newUsers.innerHTML = '';
+      lightdm.users.forEach((user, index) => {
+        user = new UserWrapper(user);
+        const item = `
+        <li class="new-users__user"">
+          <img id="profile-img" draggable="false" alt="Profile image" src="${user.image}">
+          <div class="new-users__user__name" id="${index}">${user.display_name}</div>
+        </li>`;
+        newUsers.innerHTML += item;
+      });
     }
 
     loadUser(user) {
@@ -79,6 +94,13 @@ class Login {
         this.components.login.addEventListener('submit', e => {
             e.preventDefault();
             this._processLogin();
+        });
+
+        this.components.newUsers.addEventListener('click', e => {
+          console.log(e.target)
+          if (e.target.className === 'new-users__user__name') {
+            this.loadUser(lightdm.users[e.target.id]);
+          }
         });
     }
 
@@ -124,6 +146,16 @@ let login;
 setTimeout(() => {
     login = new Login();
     login.loadUser(new UserWrapper());
+
+    // Super lazy click off to hide
+    document.addEventListener('click', () => {
+      login.components.newUsers.innerHTML = '';
+    }, true);
+
+    login.components.profileImage.addEventListener('click', event => {
+      login.changeUser();
+    });
+
 }, 1)
 
 function authentication_complete() {
